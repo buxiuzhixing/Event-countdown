@@ -1,0 +1,54 @@
+<!DOCTYPE html>  
+<html lang="zh-CN">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>开学倒计时</title>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            text-align: center;  
+            padding-top: 50px;  
+            font-size: 24px;  
+        }  
+  
+        h1 {  
+            font-size: 48px;  
+            margin-bottom: 20px;  
+        }  
+  
+        #countdown {  
+            font-size: 64px;  
+            font-weight: bold;  
+            margin-bottom: 20px;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <h1>距离开学还有</h1>  
+    <div id="countdown"></div>  
+    <script>  
+        function updateCountdown() {  
+            const targetDate = new Date(new Date().getFullYear(), 1, 19, 19, 0, 0); // 2月19日19:00，注意月份是从0开始的，所以2月是1  
+            const now = new Date();  
+  
+            if (now >= targetDate) {  
+                document.getElementById('countdown').innerHTML = "开学了！";  
+                clearInterval(intervalId); // 停止倒计时  
+            } else {  
+                const diff = targetDate - now;  
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));  
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));  
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));  
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);  
+  
+                document.getElementById('countdown').innerHTML = `${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;  
+            }  
+        }  
+  
+        let intervalId = setInterval(updateCountdown, 1000); // 每秒更新一次倒计时  
+        updateCountdown(); // 页面加载时更新一次倒计时  
+    </script>  
+</body>  
+</html>
