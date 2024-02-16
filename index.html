@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <meta name="DEscription" contect="Yes, this is a gift!🤪👉📱">
-    <title>是的，这是一份礼物！</title>  
+    <title>是的，这是一份礼物！</title>
+    <link rel="icon" href="\favicon.ico" sizes="32x32">
     <style>  
         body {  
             font-family: Arial, sans-serif;  
@@ -31,8 +32,8 @@
     <div id="countdown"></div>  
     <script>  
         function updateCountdown() {  
-            const targetDate = new Date(new Date().getFullYear(), 1, 19, 15, 0, 0); // 2月19日15:00，注意月份是从0开始的，所以2月是1  
-            const now = new Date();  
+            const targetDate = new Date(new Date().getFullYear(), 1， 19， 15, 0, 0); // 2月19日15:00，注意月份是从0开始的，所以2月是1  
+            const 现在 = new Date();  
   
             if (now >= targetDate) {  
                 document.getElementById('countdown').innerHTML = "开学了！";  
