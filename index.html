@@ -50,7 +50,18 @@
         }  
   
         let intervalId = setInterval(updateCountdown, 1000); // 每秒更新一次倒计时  
-        updateCountdown(); // 页面加载时更新一次倒计时  
+        updateCountdown(); // 页面加载时更新一次倒计时
+
+document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+            document.title="不，这是一个炸弹💣";
+        } else  {
+            document.title="多看一眼💥";
+            setTimeout(function(){
+                document.title= "是的，这是一份礼物🎁？";
+            }, 2000);
+        }
+    }, false);
     </script>
     <button onclick="window.location.href='https://404.seedream7649.top/yuanshen/index.html'" type="button" id="add">🌟原神，启动！</button>
 </body>  
