@@ -32,11 +32,11 @@
     <div id="countdown"></div>  
     <script>  
         function updateCountdown() {  
-            const targetDate = new Date(new Date().getFullYear(), 1, 19, 15, 0, 0); // 2月19日15:00，注意月份是从0开始的，所以2月是1  
+            const targetDate = new Date(new Date().getFullYear(), 5, 7, 9, 0, 0); // 6月7日15:00，注意月份是从0开始的，所以6月是5  
             const now = new Date();  
   
             if (now >= targetDate) {  
-                document.getElementById('countdown').innerHTML = "开学了！";  
+                document.getElementById('countdown').innerHTML = "已开考";  
                 clearInterval(intervalId); // 停止倒计时  
             } else {  
                 const diff = targetDate - now;  
