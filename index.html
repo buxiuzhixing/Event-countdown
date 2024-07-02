@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <meta name="description" contect="Yes, this is a gift!🤪👉📱">
-    <title>是的，这是一份礼物！</title>
+    <title>是的，这是一份礼物🎁！</title>
     <link rel="icon" href="\favicon.ico" sizes="32x32">
     <style>  
         body {  
@@ -28,15 +28,15 @@
     </style>  
 </head>  
 <body>  
-    <h1>距离高考还有</h1>  
+    <h1>距离开学还有</h1>  
     <div id="countdown"></div>  
     <script>  
         function updateCountdown() {  
-            const targetDate = new Date(new Date().getFullYear(), 5, 7, 9, 0, 0); // 6月7日15:00，注意月份是从0开始的，所以6月是5  
+            const targetDate = new Date(new Date().getFullYear()， 8， 1， 7, 0, 0); // 9月1日7:00，注意月份是从0开始的，所以6月是5  
             const now = new Date();  
   
             if (now >= targetDate) {  
-                document.getElementById('countdown').innerHTML = "已开考";  
+                document.getElementById('countdown').innerHTML = "个寂寞";  
                 clearInterval(intervalId); // 停止倒计时  
             } else {  
                 const diff = targetDate - now;  
