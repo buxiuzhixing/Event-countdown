@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <meta name="description" contect="Yes, this is a gift!🤪👉📱">
-    <title>是的，这是一份礼物🎁！</title>
+    <title>不，这是一个炸弹💣</title>
     <link rel="icon" href="\favicon.ico" sizes="32x32">
     <style>  
         body {  
@@ -32,7 +32,7 @@
     <div id="countdown"></div>  
     <script>  
         function updateCountdown() {  
-            const targetDate = new Date(new Date().getFullYear(), 8, 1, 7, 0, 0); // 9月1日7:00，注意月份是从0开始的，所以6月是5  
+            const targetDate = new Date(new Date().getFullYear(), 8, 1, 14, 30, 0); // 9月1日14:30，注意月份是从0开始的，所以6月是5  
             const now = new Date();  
   
             if (now >= targetDate) {  
@@ -54,7 +54,7 @@
 
 document.addEventListener("visibilitychange", function () {
         if (document.hidden) {
-            document.title="不，这是一个炸弹💣";
+            document.title="是的，这是一份礼物🎁！";
         } else  {
             document.title="多看一眼💥";
             setTimeout(function(){
