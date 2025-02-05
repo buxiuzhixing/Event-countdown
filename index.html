@@ -8,6 +8,10 @@
     <title>不，这是一个炸弹💣</title>
     <link rel="icon" href="\favicon.ico" sizes="32x32">
     <style>  
+    	@font-face {
+  	font-family: "MinecraftAE";
+  	src: url("Font/MinecraftAE.ttf");
+}
         body {  
             font-family: Arial, sans-serif;  
             text-align: center;  
@@ -28,11 +32,11 @@
     </style>  
 </head>  
 <body background="https://web.seedream7649.top/bing-wallpaper/bg.php">
-    <h1>距离开学还有</h1>  
+    <h1 style="font-family: 楷体">距离高考还有</h1>  
     <div id="countdown"></div>  
     <script>  
         function updateCountdown() {  
-            const targetDate = new Date(new Date().getFullYear(), 1, 12, 15, 00, 0); // 10月1日0:00，注意月份是从0开始的，所以9月是8  
+            const targetDate = new Date(new Date().getFullYear(), 5, 7, 8, 00, 0); // 10月1日0:00，注意月份是从0开始的，所以9月是8  
             const now = new Date();  
   
             if (now >= targetDate) {  
@@ -45,7 +49,7 @@
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));  
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);  
   
-                document.getElementById('countdown').innerHTML = `${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;  
+                document.getElementById('countdown').innerHTML = `<h1 style="font-family: MinecraftAE">${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒</h1>`;  
             }  
         }  
   
