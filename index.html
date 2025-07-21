@@ -1,74 +1,509 @@
-<!DOCTYPE html>  
-<html lang="zh-CN">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <meta name="description" contect="Yes, this is a gift!🤪👉📱">
-    <title>不，这是一个炸弹💣</title>
-    <link rel="icon" href="\favicon.ico" sizes="32x32">
-    <style>  
-    	@font-face {
-  	font-family: "MinecraftAE";
-  	src: url("Font/MinecraftAE.ttf");
-}
-        body {  
-            font-family: Arial, sans-serif;  
-            text-align: center;  
-            padding-top: 50px;  
-            font-size: 24px;  
-        }  
-  
-        h1 {  
-            font-size: 48px;  
-            margin-bottom: 20px;  
-        }  
-  
-        #countdown {  
-            font-size: 64px;  
-            font-weight: bold;  
-            margin-bottom: 20px;  
-        }  
-    </style>  
-</head>  
-<body background="https://web.seedream7649.top/bing-wallpaper/bg.php">
-    <h1 style="font-family: 楷体">距离<font color="#FF0000">开学</font>还有</h1>  
-    <div id="countdown"></div>  
-    <script>  
-        function updateCountdown() {  
-            const targetDate = new Date(new Date().getFullYear(), 1, 12, 20, 00, 0); // 10月1日0:00，注意月份是从0开始的，所以9月是8  
-            const now = new Date();  
-  
-            if (now >= targetDate) {  
-                document.getElementById('countdown').innerHTML = "个寂寞";  
-                clearInterval(intervalId); // 停止倒计时  
-            } else {  
-                const diff = targetDate - now;  
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));  
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));  
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));  
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);  
-  
-                document.getElementById('countdown').innerHTML = `<h1 style="font-family: MinecraftAE"><font color="#FE9900">${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒</font></h1>`;  
-            }  
-        }  
-  
-        let intervalId = setInterval(updateCountdown, 1000); // 每秒更新一次倒计时  
-        updateCountdown(); // 页面加载时更新一次倒计时
-
-document.addEventListener("visibilitychange", function () {
-        if (document.hidden) {
-            document.title="是的，这是一份礼物🎁！";
-        } else  {
-            document.title="多看一眼💥";
-            setTimeout(function(){
-                document.title= "是的，这是一份礼物🎁？";
-            }, 2000);
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高考倒计时</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
-    }, false);
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            letter-spacing: 2px;
+            color: #ffd700;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .clock-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .analog-clock {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            height: 300px;
+            position: relative;
+            border: 8px solid #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .digital-clock {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .date-display {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-align: center;
+        }
+        
+        .time-display {
+            font-size: 3.5rem;
+            font-weight: bold;
+            letter-spacing: 5px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 30px;
+            border-radius: 15px;
+            border: 3px solid #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+        
+        .countdown-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(178, 31, 31, 0.3);
+            border-radius: 15px;
+            border: 2px solid #ffd700;
+        }
+        
+        .countdown-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .countdown-item {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 15px 10px;
+            min-width: 120px;
+            border: 2px solid #ffd700;
+        }
+        
+        .countdown-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+        
+        .countdown-label {
+            font-size: 1.2rem;
+            margin-top: 5px;
+            color: #fff;
+        }
+        
+        .quote-container {
+            margin: 40px 0;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 2px solid #ffd700;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .quote {
+            font-size: 1.8rem;
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+        
+        .author {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            align-self: flex-end;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .clock-center {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ffd700;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            box-shadow: 0 0 10px #ffd700;
+        }
+        
+        .clock-hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom;
+            border-radius: 10px;
+            transform: translateX(-50%);
+        }
+        
+        .hour-hand {
+            width: 8px;
+            height: 70px;
+            background: #ffd700;
+        }
+        
+        .minute-hand {
+            width: 6px;
+            height: 100px;
+            background: #ff6b6b;
+        }
+        
+        .second-hand {
+            width: 3px;
+            height: 120px;
+            background: #4ecdc4;
+        }
+        
+        .motivation-text {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 20px 0;
+            color: #ffd700;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+        
+        .decorations {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .decoration {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.3;
+            animation: float 10s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .progress-container {
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            border: 2px solid #ffd700;
+        }
+        
+        .progress-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffd700, #ff6b6b);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+        
+        @media (max-width: 768px) {
+            .clock-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .countdown-item {
+                min-width: 80px;
+            }
+            
+            .countdown-value {
+                font-size: 2rem;
+            }
+            
+            .time-display {
+                font-size: 2.5rem;
+            }
+            
+            .quote {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="decorations" id="decorations"></div>
+        
+        <div class="header">
+            <h1><i class="fas fa-graduation-cap"></i> 高考倒计时</h1>
+            <p>奋斗的青春最美丽，拼搏的人生最精彩</p>
+        </div>
+        
+        <div class="motivation-text">
+            <p>努力拼搏，让梦想在六月绽放！</p>
+        </div>
+        
+        <div class="clock-container">
+            <div class="analog-clock">
+                <div class="clock-hand hour-hand" id="hour-hand"></div>
+                <div class="clock-hand minute-hand" id="minute-hand"></div>
+                <div class="clock-hand second-hand" id="second-hand"></div>
+                <div class="clock-center"></div>
+            </div>
+            
+            <div class="digital-clock">
+                <div class="date-display" id="date-display"></div>
+                <div class="time-display" id="time-display"></div>
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-title">2025年高考倒计时进度</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+        
+        <div class="countdown-container">
+            <h2 class="countdown-title">距离2025年高考还有</h2>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-value" id="days">00</div>
+                    <div class="countdown-label">天</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="hours">00</div>
+                    <div class="countdown-label">小时</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="minutes">00</div>
+                    <div class="countdown-label">分钟</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="seconds">00</div>
+                    <div class="countdown-label">秒</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="quote-container">
+            <div class="quote" id="quote">知识改变命运，勤奋创造未来</div>
+            <div class="author" id="author">— 佚名</div>
+        </div>
+        
+        <div class="footer">
+            <p>为梦想而战</p>
+        </div>
+    </div>
+
+    <script>
+        // 创建装饰元素
+        function createDecorations() {
+            const container = document.getElementById('decorations');
+            const symbols = ['📚', '✏️', '📝', '🔍', '💡', '🎯', '🏆', '⭐', '💯'];
+            
+            for (let i = 0; i < 20; i++) {
+                const decoration = document.createElement('div');
+                decoration.className = 'decoration';
+                decoration.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                decoration.style.left = `${Math.random() * 100}%`;
+                decoration.style.animationDuration = `${15 + Math.random() * 20}s`;
+                decoration.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(decoration);
+            }
+        }
+        
+        // 励志名言
+        const quotes = [
+            { text: "不苦不累，高三无味；不拼不搏，等于白活。", author: "高三励志语" },
+            { text: "拼一个春夏秋冬，赢一个无悔人生。", author: "高考励志语" },
+            { text: "今天多一份拼搏，明天多几份欢笑。", author: "高考励志语" },
+            { text: "十年寒窗磨一剑，今朝出鞘试锋芒。", author: "高考励志语" },
+            { text: "没有伞的孩子，必须努力奔跑！", author: "励志名言" },
+            { text: "努力造就实力，态度决定高度。", author: "学习格言" },
+            { text: "贵在坚持、难在坚持、成在坚持。", author: "励志名言" }
+        ];
+        
+        // 更新时钟
+        function updateClock() {
+            const now = new Date();
+            
+            // 更新数字时钟
+            document.getElementById('date-display').textContent = now.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                weekday: 'long'
+            });
+            
+            document.getElementById('time-display').textContent = now.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            
+            // 更新模拟时钟
+            const hours = now.getHours() % 12;
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            
+            const hourDeg = (hours * 30) + (minutes * 0.5);
+            const minuteDeg = (minutes * 6) + (seconds * 0.1);
+            const secondDeg = seconds * 6;
+            
+            document.getElementById('hour-hand').style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
+            document.getElementById('minute-hand').style.transform = `translateX(-50%) rotate(${minuteDeg}deg)`;
+            document.getElementById('second-hand').style.transform = `translateX(-50%) rotate(${secondDeg}deg)`;
+        }
+        
+        // 更新高考倒计时
+        function updateCountdown() {
+            // 高考日期 - 2025年6月7日 9:00
+            const gaokaoDate = new Date(2025, 5, 7, 9, 0, 0);
+            const now = new Date();
+            
+            // 计算总天数和剩余天数
+            const startDate = new Date(2024, 5, 8); // 假设从2024年6月8日开始
+            const totalDays = Math.floor((gaokaoDate - startDate) / (1000 * 60 * 60 * 24));
+            const passedDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+            
+            // 计算进度百分比
+            const progressPercent = Math.min(100, Math.max(0, (passedDays / totalDays * 100)));
+            document.getElementById('progress-fill').style.width = `${progressPercent}%`;
+            
+            // 如果今年高考已过，计算明年高考
+            if (now > gaokaoDate) {
+                gaokaoDate.setFullYear(gaokaoDate.getFullYear() + 1);
+            }
+            
+            const diff = gaokaoDate - now;
+            
+            // 计算天、小时、分钟、秒
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            // 更新倒计时显示
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // 更新励志名言
+        function updateQuote() {
+            const quoteIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById('quote').textContent = quotes[quoteIndex].text;
+            document.getElementById('author').textContent = `— ${quotes[quoteIndex].author}`;
+        }
+        
+        // 初始化
+        function init() {
+            createDecorations();
+            updateClock();
+            updateCountdown();
+            updateQuote();
+            
+            // 每秒更新时钟和倒计时
+            setInterval(updateClock, 1000);
+            setInterval(updateCountdown, 1000);
+            
+            // 每30秒更新一次励志名言
+            setInterval(updateQuote, 30000);
+        }
+        
+        // 页面加载完成后初始化
+        window.addEventListener('DOMContentLoaded', init);
     </script>
-    <a href="https://github.com/buxiuzhixing/event-countdown">
-    <img src="https://github.seedream7649.top/api/pin?username=buxiuzhixing&repo=Event-countdown" border="0" width="300">
-     </a> 
-</body>  
+</body>
 </html>
